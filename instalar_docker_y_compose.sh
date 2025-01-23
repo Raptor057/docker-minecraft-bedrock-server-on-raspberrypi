@@ -28,17 +28,22 @@ sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
 echo "6. Verificando la instalación de Docker..."
 docker --version
 
-# (Opcional) Añadir usuario al grupo Docker
+# Añadir usuario al grupo Docker
 echo "7. Añadiendo el usuario actual al grupo Docker..."
 sudo usermod -aG docker $USER
 
+# Verificar y corregir permisos del socket de Docker
+echo "8. Verificando y configurando permisos de /var/run/docker.sock..."
+sudo chown root:docker /var/run/docker.sock
+sudo chmod 660 /var/run/docker.sock
+
 # Habilitar Docker al inicio del sistema
-echo "8. Habilitando Docker para iniciar con el sistema..."
+echo "9. Habilitando Docker para iniciar con el sistema..."
 sudo systemctl enable docker
 sudo systemctl start docker
 
 # Instalar Docker Compose
-echo "9. Instalando Docker Compose..."
+echo "10. Instalando Docker Compose..."
 DOCKER_COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
 sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
@@ -46,12 +51,10 @@ sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPO
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Verificar la instalación de Docker Compose
-echo "10. Verificando la instalación de Docker Compose..."
+echo "11. Verificando la instalación de Docker y Docker Compose..."
 docker-compose --version
-
-# Verificar la instalación de Docker
-echo "10. Verificando la instalación de Docker ..."
 docker --version
+
 
 echo "==================================="
 echo " Docker y Docker Compose se han instalado correctamente "
@@ -60,6 +63,6 @@ echo "Nota: Si no puedes usar Docker sin 'sudo', reinicia tu sesión o usa el co
 
 
 # Iniciar minecraft-bedrock-server
-echo "11. Iniciando servidor minecraft-bedrock-server..."
+echo "12. Iniciando servidor minecraft-bedrock-server..."
 docker-compose up -d
 
