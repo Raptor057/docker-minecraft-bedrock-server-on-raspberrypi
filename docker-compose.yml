@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   minecraft-bedrock-server:
     image: itzg/minecraft-bedrock-server
@@ -12,8 +10,8 @@ services:
       GAMEMODE: "survival"  # Establece el modo de juego como supervivencia
       DIFFICULTY: "normal"  # Configura la dificultad como normal
       MAX_PLAYERS: "10"     # Máximo de jugadores permitidos
-      WHITE_LIST: "false"    # Activa la lista blanca
-      WHITE_LIST_USERS: "player1,player2" # Usuarios permitidos
+      WHITE_LIST: "false"   # Activa la lista blanca
+      ONLINE_MODE: "false"  # 🚨 Desactiva autenticación con Microsoft/Xbox Live
     volumes:
       - mc-bedrock-data:/data # Volumen persistente para datos del servidor
     restart: unless-stopped  # Reinicia automáticamente a menos que se detenga manualmente
