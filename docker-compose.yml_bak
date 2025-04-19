@@ -1,0 +1,20 @@
+services:
+  minecraft-bedrock-server:
+    image: itzg/minecraft-bedrock-server
+    container_name: minecraft_bedrock_server
+    ports:
+      - "19132:19132/udp"  # Exposición del puerto UDP para el servidor
+    environment:
+      EULA: "TRUE"          # Acepta el acuerdo de licencia
+      VERSION: "LATEST"     # Usa la última versión disponible
+      GAMEMODE: "survival"  # Establece el modo de juego como supervivencia
+      DIFFICULTY: "normal"  # Configura la dificultad como normal
+      MAX_PLAYERS: "10"     # Máximo de jugadores permitidos
+      WHITE_LIST: "false"   # Activa la lista blanca
+      ONLINE_MODE: "false"  # 🚨 Desactiva autenticación con Microsoft/Xbox Live
+    volumes:
+      - mc-bedrock-data:/data # Volumen persistente para datos del servidor
+    restart: unless-stopped  # Reinicia automáticamente a menos que se detenga manualmente
+
+volumes:
+  mc-bedrock-data:
