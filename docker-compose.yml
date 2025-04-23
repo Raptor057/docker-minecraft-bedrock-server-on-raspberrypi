@@ -31,7 +31,8 @@ services:
       WHITE_LIST: "false"
       ONLINE_MODE: "false"
     volumes:
-      - mc-bedrock-data:/data
+     # - mc-bedrock-data:/data
+      - ./bedrock-data/data:/data
     restart: unless-stopped
 
 volumes:
