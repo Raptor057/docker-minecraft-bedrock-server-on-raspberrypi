@@ -27,9 +27,9 @@ services:
       VERSION: "LATEST"
       GAMEMODE: "survival"
       DIFFICULTY: "normal"
-      MAX_PLAYERS: "10"
+      MAX_PLAYERS: "25"
       WHITE_LIST: "false"
-      ONLINE_MODE: "false"
+      ONLINE_MODE: "true"
     volumes:
      # - mc-bedrock-data:/data
       - ./bedrock-data/data:/data
